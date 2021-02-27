@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.mapper.SysUserMapper">
+  <resultMap id="BaseResultMap" type="com.study.entity.SysUser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="userName" jdbcType="VARCHAR" property="userName" />
+    <result column="fullName" jdbcType="VARCHAR" property="fullName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="credentialSalt" jdbcType="VARCHAR" property="credentialSalt" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="mobilePhone" jdbcType="BIGINT" property="mobilePhone" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="positionCode" jdbcType="VARCHAR" property="positionCode" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="needResetPwd" jdbcType="BIT" property="needResetPwd" />
+    <result column="avatarId" jdbcType="VARCHAR" property="avatarId" />
+    <result column="isSystem" jdbcType="BIT" property="isSystem" />
+    <result column="isLocked" jdbcType="BIT" property="isLocked" />
+    <result column="isDeleted" jdbcType="BIT" property="isDeleted" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="lastUpdateTime" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, code, userName, fullName, password, credentialSalt, sex, mobilePhone, telephone, 
+    positionCode, email, needResetPwd, avatarId, isSystem, isLocked, isDeleted, description, 
+    createTime, lastUpdateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" parameterType="com.study.entity.SysUser">
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="userName != null">
+        userName,
+      </if>
+      <if test="fullName != null">
+        fullName,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="credentialSalt != null">
+        credentialSalt,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="mobilePhone != null">
+        mobilePhone,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="positionCode != null">
+        positionCode,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="needResetPwd != null">
+        needResetPwd,
+      </if>
+      <if test="avatarId != null">
+        avatarId,
+      </if>
+      <if test="isSystem != null">
+        isSystem,
+      </if>
+      <if test="isLocked != null">
+        isLocked,
+      </if>
+      <if test="isDeleted != null">
+        isDeleted,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+      <if test="lastUpdateTime != null">
+        lastUpdateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="fullName != null">
+        #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialSalt != null">
+        #{credentialSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null">
+        #{mobilePhone,jdbcType=BIGINT},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="positionCode != null">
+        #{positionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="needResetPwd != null">
+        #{needResetPwd,jdbcType=BIT},
+      </if>
+      <if test="avatarId != null">
+        #{avatarId,jdbcType=VARCHAR},
+      </if>
+      <if test="isSystem != null">
+        #{isSystem,jdbcType=BIT},
+      </if>
+      <if test="isLocked != null">
+        #{isLocked,jdbcType=BIT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null">
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.study.entity.SysUser">
+    update sys_user
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="fullName != null">
+        fullName = #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialSalt != null">
+        credentialSalt = #{credentialSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null">
+        mobilePhone = #{mobilePhone,jdbcType=BIGINT},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="positionCode != null">
+        positionCode = #{positionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="needResetPwd != null">
+        needResetPwd = #{needResetPwd,jdbcType=BIT},
+      </if>
+      <if test="avatarId != null">
+        avatarId = #{avatarId,jdbcType=VARCHAR},
+      </if>
+      <if test="isSystem != null">
+        isSystem = #{isSystem,jdbcType=BIT},
+      </if>
+      <if test="isLocked != null">
+        isLocked = #{isLocked,jdbcType=BIT},
+      </if>
+      <if test="isDeleted != null">
+        isDeleted = #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null">
+        lastUpdateTime = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="queryListPage" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    <where>
+      <if test="id != null">
+          and id = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="code != null">
+          and code = #{code,jdbcType=VARCHAR}
+      </if>
+      <if test="userName != null">
+          and userName = #{userName,jdbcType=VARCHAR}
+      </if>
+      <if test="fullName != null">
+          and fullName = #{fullName,jdbcType=VARCHAR}
+      </if>
+      <if test="password != null">
+          and password = #{password,jdbcType=VARCHAR}
+      </if>
+      <if test="credentialSalt != null">
+          and credentialSalt = #{credentialSalt,jdbcType=VARCHAR}
+      </if>
+      <if test="sex != null">
+          and sex = #{sex,jdbcType=VARCHAR}
+      </if>
+      <if test="mobilePhone != null">
+          and mobilePhone = #{mobilePhone,jdbcType=BIGINT}
+      </if>
+      <if test="telephone != null">
+          and telephone = #{telephone,jdbcType=VARCHAR}
+      </if>
+      <if test="positionCode != null">
+          and positionCode = #{positionCode,jdbcType=VARCHAR}
+      </if>
+      <if test="email != null">
+          and email = #{email,jdbcType=VARCHAR}
+      </if>
+      <if test="needResetPwd != null">
+          and needResetPwd = #{needResetPwd,jdbcType=BIT}
+      </if>
+      <if test="avatarId != null">
+          and avatarId = #{avatarId,jdbcType=VARCHAR}
+      </if>
+      <if test="isSystem != null">
+          and isSystem = #{isSystem,jdbcType=BIT}
+      </if>
+      <if test="isLocked != null">
+          and isLocked = #{isLocked,jdbcType=BIT}
+      </if>
+      <if test="isDeleted != null">
+          and isDeleted = #{isDeleted,jdbcType=BIT}
+      </if>
+      <if test="description != null">
+          and description = #{description,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+          and createTime = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="lastUpdateTime != null">
+          and lastUpdateTime = #{lastUpdateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+     <if test="sort!=null and sort!=''">
+           order by ${sort}
+           <if test="order!=null and order!=''">
+               ${order}
+           </if>
+       </if>
+  </select>
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/access-limit/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/access-limit/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/commons/common-base/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/commons/common-export/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/commons/common-utils/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/commons/common-web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ibatis-generate/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot-starter/hello-autoconfigure/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot-starter/hello-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot-swagger/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sys-manager/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sys-manager/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

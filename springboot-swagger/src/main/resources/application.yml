@@ -1,0 +1,23 @@
+
+pagehelper:
+  # 数据库的方言
+  helperDialect: mysql
+  # 启用合理化，如果pageNum < 1会查询第一页，如果pageNum > pages会查询最后一页
+  reasonable: true
+  # 用于从对象中根据属性名取值，
+  # 可以配置 pageNum,pageSize,count,pageSizeZero,reasonable，不配置映射的用默认值，
+  # 默认值为pageNum=pageNum;pageSize=pageSize;count=countSql;reasonable=reasonable;pageSizeZero=pageSizeZero
+  params: count=countSql;pageNum=pageNum;pageSize=pageSize;
+mybatis:
+  # mapper.xml包地址
+  mapper-locations: classpath:mapper/*.xml
+  # pojo生成包地址
+  type-aliases-package: com.study.entity
+server:
+  port: 8080
+spring:
+  profiles:
+    active: dev
+  application:
+    name: spring-boot-example
+debug: false
