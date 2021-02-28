@@ -9,6 +9,7 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/commons/common-base/pom.xml" />
         <option value="$PROJECT_DIR$/hello-autoconfigure/pom.xml" />
       </set>
     </option>

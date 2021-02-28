@@ -1,0 +1,2 @@
+Web三方登录实现（基于OAuth2.0，包含Github和QQ登录，附源码）
+https://blog.csdn.net/yuanlaijike/article/details/80413181

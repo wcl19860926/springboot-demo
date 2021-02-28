@@ -6,23 +6,30 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="springboot-swagger" />
-        <module name="ibatis-generate" />
-        <module name="common-base" />
-        <module name="hello-autoconfigure" />
         <module name="common-export" />
-        <module name="hello-starter" />
-        <module name="sys-manager" />
-        <module name="access-limit" />
         <module name="common-web" />
+        <module name="hello-autoconfigure" />
+        <module name="ibatis-generate" />
+        <module name="hello-starter" />
+        <module name="springboot-github-login" />
+        <module name="springboot-shiro" />
+        <module name="sys-manager" />
+        <module name="springboot-swagger" />
+        <module name="oauth2-auth-server" />
+        <module name="common-common" />
+        <module name="access-limit" />
         <module name="common-utils" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="common-base" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="access-limit" options="-parameters" />
       <module name="common-base" options="-parameters" />
+      <module name="common-common" options="-parameters" />
       <module name="common-export" options="-parameters" />
       <module name="common-utils" options="-parameters" />
       <module name="common-web" options="-parameters" />
@@ -30,6 +37,10 @@
       <module name="hello-autoconfigure" options="-parameters" />
       <module name="hello-starter" options="-parameters" />
       <module name="ibatis-generate" options="-parameters" />
+      <module name="oauth2-auth-server" options="-parameters" />
+      <module name="springboot-github-login" options="-parameters" />
+      <module name="springboot-oauth2" options="-parameters" />
+      <module name="springboot-shiro" options="-parameters" />
       <module name="springboot-starter" options="-parameters" />
       <module name="springboot-swagger" options="-parameters" />
       <module name="sys-manager" options="-parameters" />

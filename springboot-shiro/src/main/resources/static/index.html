@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <title>开发后台主页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <script type="text/javascript" src="static/js/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="static/js/bootstrap.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>后台API页面</h2>
+            <span id="span_ver" class="label label-info"></span>
+        </div>
+        <div class="col-md-8">
+            <div class="pull-right" id="login_panel">
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <label class="sr-only" for="username">用户名</label>
+                        <input type="text" class="form-control input-sm" id="username" placeholder="请输入用户名" value="root">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="password">密码</label>
+                        <input type="password" class="form-control input-sm" id="password" placeholder="请输入密码">
+                    </div>
+                    <button type="button" id="btnLogin" class="btn btn-default btn-sm">登录</button>
+                </form>
+            </div>
+            <div class="pull-right" id="user_panel">
+                <span class="label label-success">当前用户</span>
+                <span id="user_span" class="label label-info"></span>
+                <button type="button" id="btnLogout" class="btn btn-default btn-sm">退出</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <ul>
+                <li><a href="swagger-ui.html" target="_blank">swagger API 文档</a></li>
+                <li><a href="druid/" target="_blank">数据源管理器</a></li>
+
+                <!--<li><a href="actuator/conditions" target="_blank">Spring 自动配置</a></li>
+                <li><a href="actuator/configprops" target="_blank">Spring 属性配置</a></li>
+                <li><a href="actuator/beans" target="_blank">Spring beans</a></li>
+                <li><a href="actuator/heapdump" target="_blank">Spring 线程栈</a></li>
+                <li><a href="actuator/env" target="_blank">Spring 环境变量</a></li>
+                <li><a href="actuator/health" target="_blank">Spring 健康指标</a></li>
+                <li><a href="actuator/info" target="_blank">Spring 应用信息</a></li>
+                <li><a href="actuator/mappings" target="_blank">Spring url映射</a></li>
+                <li><a href="actuator/httptrace" target="_blank">Spring 追踪信息</a></li>-->
+
+            </ul>
+
+        </div>
+        <div class="col-md-8">
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $("#btnLogin").click(function () {
+            loginAction();
+        });
+        $("#btnLogout").click(function () {
+            logoutAction();
+        });
+        checkOnline();
+    });
+
+    function checkOnline() {
+        $.ajax({
+            url: "/api/sysUser/auth/me",
+            type: "GET",
+            cache: false,
+            dataType: 'json',
+            success: function (response) {
+                if (response.code == 401) {
+                    showUserPanel(null);
+                } else {
+                    showUserPanel(response.data.username);
+                }
+            }
+        });
+    }
+
+    function showUserPanel(data) {
+        if (data == null) { // show login panel
+            $("#login_panel").show();
+            $("#user_panel").hide();
+        } else { // user panel
+            $("#login_panel").hide();
+            $("#user_panel").show();
+            $("#user_span").text(data.username);
+        }
+    }
+
+    function loginAction() {
+        var username = $("#username").val();
+        var password = $("#password").val();
+        var data = {"username": username, "password": password};
+        $.post({
+            url: "/api/sysUser/auth/login",
+            type: "POST",
+            contentType: "application/json",
+            processData: false,
+            dataType: 'json',
+            data: JSON.stringify(data),
+            success: function (response) {
+                if (response.code == 0) {
+                    showUserPanel(response.data);
+                } else {
+                    alert("登录失败-" + response.message);
+                }
+            }
+        });
+    }
+
+    function logoutAction() {
+        $.get("/api/sysUser/auth/logout", function () {
+            showUserPanel(null);
+        });
+    }
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+
+info:
+  app:
+    name: user-service
+    version: 1.0.1
+  build:
+    artifactId: user-service
+    version: '@version@'
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+  resources:
+    static-locations:
+      - classpath:/static
+#i18n setting
+  messages:
+     basename: i18n/biz/messages,i18n/common/messages
+     cache-duration: 3600s
+     encoding: UTF-8
+
+mybatis:
+  configLocation: classpath:mybatis-config.xml
+  mapperLocations: classpath*:mapper/**/*.xml
+  typeAliasesPackage: com.study.user.entity.*
+server:
+  port: 8080
+
+

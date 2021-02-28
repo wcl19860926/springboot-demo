@@ -1,6 +1,6 @@
 package com.study.util;
 
-import com.study.io.ByteArrayOutputStream;
+import com.study.core.io.ByteArrayOutputStream;
 import org.apache.log4j.Logger;
 
 import java.io.InputStream;

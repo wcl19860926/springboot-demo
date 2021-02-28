@@ -1,0 +1,18 @@
+
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 60
+spring:
+  application:
+    name: spring-security-test
+  # dev环境
+  profiles:
+    active: dev
+  thymeleaf:
+    cache: false
+    mode: HTML
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

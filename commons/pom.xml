@@ -12,10 +12,10 @@
     <artifactId>commons</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>common-base</module>
         <module>common-utils</module>
         <module>common-web</module>
         <module>common-export</module>
+        <module>common-common</module>
     </modules>
 
 

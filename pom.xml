@@ -15,16 +15,21 @@
         <module>ibatis-generate</module>
         <module>springboot-swagger</module>
         <module>springboot-starter</module>
+        <module>springboot-shiro</module>
+        <module>springboot-github-login</module>
+        <module>springboot-oauth2</module>
     </modules>
     <properties>
         <timestamp>${maven.build.timestamp}</timestamp>
         <java.version>1.8</java.version>
-        <com.study.version>0.0.1-SNAPSHOT</com.study.version>
+        <com.study.version>1.0-SNAPSHOT</com.study.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <shiro.version>1.4.0</shiro.version>
         <swagger.version>2.7.0</swagger.version>
         <poi.version>3.9</poi.version>
+        <swagger2.version>2.9.2</swagger2.version>
+        <shiro-spring.version>1.5.3</shiro-spring.version>
     </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -35,14 +40,29 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.study.springboot</groupId>
-                <artifactId>common-util</artifactId>
+                <groupId>com.study</groupId>
+                <artifactId>common-utils</artifactId>
                 <version>${com.study.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.study.springboot</groupId>
-                <artifactId>common</artifactId>
+                <groupId>com.study</groupId>
+                <artifactId>common-export</artifactId>
                 <version>${com.study.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.study</groupId>
+                <artifactId>common-web</artifactId>
+                <version>${com.study.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.study</groupId>
+                <artifactId>common-common</artifactId>
+                <version>${com.study.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>1.2.7</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.activemq</groupId>
@@ -81,6 +101,31 @@
                 <version>1.2.3</version>
             </dependency>
             <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring-boot-starter</artifactId>
+                <version>${shiro-spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring-boot-web-starter</artifactId>
+                <version>${shiro-spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-quartz</artifactId>
+                <version>${shiro-spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-aspectj</artifactId>
+                <version>${shiro-spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>3.13.1</version>
+            </dependency>
+            <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>1.2.3</version>
@@ -111,7 +156,16 @@
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>1.3.2</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.springframework.security.oauth</groupId>
+                <artifactId>spring-security-oauth2</artifactId>
+                <version>2.4.0.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security.oauth.boot</groupId>
+                <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+                <version>2.2.1.RELEASE</version>
+            </dependency>
             <!-- 分页插件 -->
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
@@ -176,12 +230,32 @@
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
-                <version>${swagger.version}</version>
+                <version>${swagger2.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>io.swagger</groupId>
+                        <artifactId>swagger-annotations</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>io.swagger</groupId>
+                        <artifactId>swagger-models</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
-                <version>${swagger.version}</version>
+                <version>${swagger2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>1.5.21</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-models</artifactId>
+                <version>1.5.21</version>
             </dependency>
             <dependency>
                 <groupId>com.belerweb</groupId>
@@ -193,12 +267,6 @@
                 <groupId>com.github.tobato</groupId>
                 <artifactId>fastdfs-client</artifactId>
                 <version>1.26.1-RELEASE</version>
-            </dependency>
-
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.17</version>
             </dependency>
 
             <!--fastdfs end -->
@@ -227,7 +295,7 @@
             <dependency>
                 <groupId>net.sf.supercsv</groupId>
                 <artifactId>super-csv</artifactId>
-                <version>2.4</version>
+                <version>2.4.0  </version>
             </dependency>
         </dependencies>
     </dependencyManagement>

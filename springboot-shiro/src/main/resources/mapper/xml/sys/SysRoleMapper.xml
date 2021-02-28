@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.user.mapper.sys.SysRoleMapper">
+
+
+    <resultMap id="BaseResultMap" type="com.study.user.entity.sys.SysRole">
+            <id column="id" jdbcType="VARCHAR" property="id"/>
+            <result column="code" jdbcType="VARCHAR" property="code"/>
+            <result column="name" jdbcType="VARCHAR" property="name"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id, code, name
+    </sql>
+
+    <insert id="insert" parameterType="com.study.user.entity.sys.SysRole">
+        insert into  sys_role
+           (id, code, name)
+        values (
+            #{id,jdbcType=VARCHAR},
+              #{name,jdbcType=VARCHAR},
+              #{name,jdbcType=VARCHAR}
+    </insert>
+
+
+    <insert id="insertSelective" parameterType="com.study.user.entity.sys.SysRole">
+        insert into sys_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">
+                    id,
+                </if>
+                <if test="code != null">
+                    code,
+                </if>
+                <if test="name != null">
+                    name,
+                </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">
+                    #{id,jdbcType=VARCHAR},
+                </if>
+                <if test="code != null">
+                    #{code,jdbcType=VARCHAR},
+                </if>
+                <if test="name != null">
+                    #{name,jdbcType=VARCHAR},
+                </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.study.user.entity.sys.SysRole">
+
+        update sys_role
+        set
+            code =  #{code,jdbcType=VARCHAR}
+            name =  #{name,jdbcType=VARCHAR},
+        where
+            id =  #{id,jdbcType=VARCHAR}
+    </update>
+
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.study.user.entity.sys.SysRole">
+        update  sys_role
+        <set>
+                <if test="code != null">
+                    code = #{code,jdbcType=VARCHAR},
+                </if>
+                <if test="name != null">
+                    name = #{name,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where
+                id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_role
+    where
+            id =  #{id,jdbcType=VARCHAR}
+  </delete>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from sys_role
+        where
+            id =  #{id,jdbcType=VARCHAR}
+    </select>
+
+
+    <select id="selectList" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from sys_role
+        <where>
+           <if test="id != null">
+            and    id =  #{id,jdbcType=VARCHAR}
+           </if>
+           <if test="code != null">
+            and    code =  #{code,jdbcType=VARCHAR}
+           </if>
+           <if test="name != null">
+            and    name =  #{name,jdbcType=VARCHAR}
+           </if>
+           <if test="roleIds != null and !roleIds.isEmpty()">
+                and  id in
+                <foreach collection="roleIds" index="index" close=")" open="(" item="item" separator=",">
+                    #{item}
+                </foreach>
+           </if>
+
+        </where>
+    </select>
+
+
+
+
+
+
+</mapper>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.user.mapper.sys.SysPermissionRoleMapper">
+
+
+    <resultMap id="BaseResultMap" type="com.study.user.entity.sys.SysPermissionRole">
+            <id column="id" jdbcType="VARCHAR" property="id"/>
+            <result column="roleId" jdbcType="VARCHAR" property="roleId"/>
+            <result column="permissionId" jdbcType="VARCHAR" property="permissionId"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id, roleId, permissionId
+    </sql>
+
+    <insert id="insert" parameterType="com.study.user.entity.sys.SysPermissionRole">
+        insert into  sys_permission_role
+           (id, roleId, permissionId)
+        values (
+            #{id,jdbcType=VARCHAR},
+              #{permissionId,jdbcType=VARCHAR},
+              #{permissionId,jdbcType=VARCHAR}
+    </insert>
+
+
+    <insert id="insertSelective" parameterType="com.study.user.entity.sys.SysPermissionRole">
+        insert into sys_permission_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">
+                    id,
+                </if>
+                <if test="roleId != null">
+                    roleId,
+                </if>
+                <if test="permissionId != null">
+                    permissionId,
+                </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">
+                    #{id,jdbcType=VARCHAR},
+                </if>
+                <if test="roleId != null">
+                    #{roleId,jdbcType=VARCHAR},
+                </if>
+                <if test="permissionId != null">
+                    #{permissionId,jdbcType=VARCHAR},
+                </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.study.user.entity.sys.SysPermissionRole">
+
+        update sys_permission_role
+        set
+            roleId =  #{roleId,jdbcType=VARCHAR}
+            permissionId =  #{permissionId,jdbcType=VARCHAR},
+        where
+            id =  #{id,jdbcType=VARCHAR}
+    </update>
+
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.study.user.entity.sys.SysPermissionRole">
+        update  sys_permission_role
+        <set>
+                <if test="roleId != null">
+                    roleId = #{roleId,jdbcType=VARCHAR},
+                </if>
+                <if test="permissionId != null">
+                    permissionId = #{permissionId,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where
+                id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_permission_role
+    where
+            id =  #{id,jdbcType=VARCHAR}
+  </delete>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from sys_permission_role
+        where
+            id =  #{id,jdbcType=VARCHAR}
+    </select>
+
+
+    <select id="selectList" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from sys_permission_role
+        <where>
+           <if test="id != null">
+            and    id =  #{id,jdbcType=VARCHAR}
+           </if>
+           <if test="roleId != null">
+            and    roleId =  #{roleId,jdbcType=VARCHAR}
+           </if>
+           <if test="permissionId != null">
+            and    permissionId =  #{permissionId,jdbcType=VARCHAR}
+           </if>
+            <if test="roleIds != null and !roleIds.isEmpty()">
+                and  roleId in
+                <foreach collection="roleIds" index="index" close=")" open="(" item="item" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+
+
+
+
+
+</mapper>

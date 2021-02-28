@@ -1,0 +1,48 @@
+server:
+  servlet:
+    context-path: /
+spring:
+  #色彩日志输出
+  output:
+    ansi:
+      enabled: always
+  profiles:
+    active: dev
+  resources:
+      static-locations: classpath:/static/
+  messages:
+    basename: i18n/message
+  mvc:
+    favicon:
+      enabled: false
+
+  # 配置thymeleaf
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+  session:
+    store-type: redis
+
+pagehelper:
+  helperDialect: mysql
+  supportMethodsArguments: true
+  autoRuntimeDialect: true
+  offsetAsPageNum: true
+  rowBoundsWithCount: true
+  reasonable: false
+  returnPageInfo: true
+  params: count=countSql
+
+
+mybatis:
+  mapper-locations: classpath:config/mybaties/mapper/*.xml
+  type-aliases-package: com.study.oauth2.server.entity
+  config-location: classpath:config/mybaties/mybatis-config.xml
+
+
+logging:
+  level:
+    root: info
+    org:
+      springframework: info
+
